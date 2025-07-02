@@ -160,17 +160,19 @@ class word_game:
     self.print_center(f"The word was: {self.word_to_guess}")
     self.print_border()
 
+# Main game loop
+while True:
+  # defines the round loop
+  word_game_instance = word_game()
+  word_game_instance.update_data()
+  word_game_instance.pick_word()
 
-# defines the main game loop
-word_game_instance = word_game()
-word_game_instance.update_data()
-word_game_instance.pick_word()
+  word_game_instance.print_start_msg()
+  while word_game_instance.attempts_left > 0 and word_game_instance.word_was_guessed is False:
+    word_game_instance.print_progress()
+    # input from the user
+    user_guess = input("Please enter your guess: ").lower().strip()
+    word_game_instance.validate_input(user_guess)
 
-word_game_instance.print_start_msg()
-while word_game_instance.attempts_left > 0 and word_game_instance.word_was_guessed is False:
-  word_game_instance.print_progress()
-  # input from the user
-  user_guess = input("Please enter your guess: ").lower().strip()
-  word_game_instance.validate_input(user_guess)
-
-word_game_instance.print_end_message()
+  word_game_instance.print_end_message()
+  input("Press any key to continue...")
