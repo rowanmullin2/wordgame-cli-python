@@ -1,8 +1,18 @@
 import tkinter as ttk
 from tkinter import messagebox
 
+# Constants for the game
 FONT = 'Times New Roman'
 
+# Constants for input fields
+INPUT_SIZE = 50
+INPUT_WIDTH = 1
+
+# Constants for grid layout
+GRID_WIDTH = 5
+GRID_HEIGHT = 6
+
+# Game rules and instructions
 RULES = """
 Welcome to the Word Game!
 In this game, you will be presented with a grid of 5 boxes.
@@ -12,6 +22,23 @@ The game will provide feedback on your guess, indicating which letters are corre
 If you need help, click the "Rules" button to see the instructions again.
 Have fun and good luck!
 """
+
+def createInputField(parent, r, c):
+  """
+    creates and input field using specified parameters
+    and adds it to the parent container.
+  """
+  input_field1 = ttk.Entry(parent, font=(FONT, INPUT_SIZE), justify="center", width=INPUT_WIDTH)
+  input_field1.grid(row=r, column=c, padx=10, pady=10, ipadx=10, ipady=10)
+
+
+def createInputRow(parent, row):
+  """
+    creates a row of input fields in the specified row
+  """
+  for col in range(1, GRID_WIDTH + 1):
+    createInputField(parent, row, col)
+
 
 def createWindow():
   window = ttk.Tk()
